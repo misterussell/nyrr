@@ -2,26 +2,27 @@ import { create } from "zustand";
 
 type SidebarState = {
     navMain: Array<object>;
-    toggleActive: () => void;
+    toggleActive: (id: number) => void;
 }
 
 const useSidebarStore = create<SidebarState>((set) => ({
+    // define navigation item
     navMain: [
         {
         id: 1,
         title: "Getting Started",
-        url: "#",
+        url: "/getting-started",
         items: [
             {
             id: 11,
             title: "Character Creator",
-            url: "#",
+            url: "/character-creator",
             isActive: false,
             },
             {
             id: 12,
             title: "Bio",
-            url: "#",
+            url: "/bio",
             isActive: false,
             },
         ],
@@ -29,37 +30,49 @@ const useSidebarStore = create<SidebarState>((set) => ({
         {
         id: 2,
         title: "World",
-        url: "#",
+        url: "property",
         items: [
             {
             id: 21,
-            title: "Home",
-            url: "#",
+            title: "Property",
+            url: "/property",
             isAvtive: false,
             },
             {
             id: 22,
             title: "Forest",
-            url: "#",
+            url: "/forest",
             isActive: false,
             },
             {
             id: 23,
             title: "Magic Pool",
-            url: "#",
+            url: "/magic-pool",
             isActive: false,
             },
         ],
         }
     ],
+    // update isActive state of navigation item
     toggleActive: (id) => 
         set((state) => ({
-            navMain: state.navMain.map((navGroup) =>
-                navGroup.items.map((navItem) =>
-                    navItem.id === id ? { ...navItem, isActive: !navItem.isActive } : navItem, 
-                ),
-            ),
+            navMain: state.navMain.map((navGroup) => {
+                const updatedItems = navGroup.items.map((item) => {
+                    console.log(item.id)
+                    return item.id === id ? { ...item, isActive: !item.isActive } : item;
+                });
+            return { ...navGroup, items: updatedItems };    
+            }),
         })),
 }));
+
+// data.map((navGroup) => {
+//     return navGroup.items.map((item) => {
+//       console.log(item)
+//       return item.id === 11 ? { ...item, isActive: !item.isActive} : item;
+//  });
+// });
+
+
 
 export default useSidebarStore;
