@@ -18,6 +18,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import useSidebarStore from "@/stores/useSidebarStore"
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -555,13 +556,17 @@ const SidebarMenuButton = React.forwardRef<
   ) => {
     const Comp = asChild ? Slot : "button"
     const { isMobile, state } = useSidebar()
+    
 
+    // onClick function added here can trigger state updates
+    const toggleActive = useSidebarStore((state) => state.toggleActive);
     const button = (
       <Comp
         ref={ref}
         data-sidebar="menu-button"
         data-size={size}
         data-active={isActive}
+        onClick={() => { console.log(props.id)}}
         className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
         {...props}
       />

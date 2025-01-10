@@ -1,7 +1,6 @@
+"use client";
 import * as React from "react"
 
-import { SearchForm } from "@/components/search-form"
-import { VersionSwitcher } from "@/components/version-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -14,61 +13,65 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { useStore } from "zustand"
+import useSidebarStore from "@/stores/useSidebarStore";
 
-// This is sample data.
-const data = {
-  navMain: [
-    {
-      title: "Getting Started",
-      url: "#",
-      items: [
-        {
-          title: "Character Creator",
-          url: "#",
-          isActive: true,
-        },
-        {
-          title: "Bio",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "World",
-      url: "#",
-      items: [
-        {
-          title: "Home",
-          url: "#",
-        },
-        {
-          title: "Forest",
-          url: "#",
-        },
-        {
-          title: "Magic Pool",
-          url: "#",
-        },
-      ],
-    }
-  ],
-}
+// const data = {
+//     navMain: [
+//         {
+//         id: 1,
+//         title: "Getting Started",
+//         url: "/getting-started",
+//         items: [
+//             {
+//             title: "Character Creator",
+//             url: "/character-creator",
+//             isActive: true,
+//             },
+//             {
+//             title: "Bio",
+//             url: "/bio",
+//             },
+//         ],
+//         },
+//         {
+//         id: 2,
+//         title: "World",
+//         url: "/world",
+//         items: [
+//             {
+//             title: "Property",
+//             url: "/property",
+//             },
+//             {
+//             title: "Forest",
+//             url: "/forest",
+//             },
+//             {
+//             title: "Magic Pool",
+//             url: "/magic-pool",
+//             },
+//         ],
+//         }
+//     ]
+// };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  return (
+    const navMain = useSidebarStore((state) => state.navMain);
+    return (
     <Sidebar {...props}>
       <SidebarHeader>
       </SidebarHeader>
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}
-        {data.navMain.map((item) => (
+        {navMain.map((item) => (
           <SidebarGroup key={item.title}>
             <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={item.isActive}>
+                    <SidebarMenuButton asChild isActive={item.isActive} id={item.id}>
                       <a href={item.url}>{item.title}</a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -80,5 +83,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
-  )
+    )
 }
