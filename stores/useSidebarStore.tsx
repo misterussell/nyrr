@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
-type SidebarState = {
-    navMain: Array<object>;
-    toggleActive: (id: number) => void;
+interface SidebarState {
+    navMain: Array<object>
+    toggleActive: (id: number) => void
 }
 
-const useSidebarStore = create<SidebarState>((set) => ({
+const useSidebarStore = create<SidebarState>()((set) => ({
     // define navigation item
     navMain: [
         {
@@ -54,24 +54,18 @@ const useSidebarStore = create<SidebarState>((set) => ({
         }
     ],
     // update isActive state of navigation item
+    // this doesn't update. research needed
     toggleActive: (id) => 
         set((state) => ({
             navMain: state.navMain.map((navGroup) => {
+                console.log(id);
                 const updatedItems = navGroup.items.map((item) => {
-                    console.log(item.id)
                     return item.id === id ? { ...item, isActive: !item.isActive } : item;
                 });
             return { ...navGroup, items: updatedItems };    
             }),
         })),
 }));
-
-// data.map((navGroup) => {
-//     return navGroup.items.map((item) => {
-//       console.log(item)
-//       return item.id === 11 ? { ...item, isActive: !item.isActive} : item;
-//  });
-// });
 
 
 
