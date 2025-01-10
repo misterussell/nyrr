@@ -11,18 +11,18 @@ const useSidebarStore = create<SidebarState>()((set) => ({
         {
         id: 1,
         title: "Getting Started",
-        url: "/getting-started",
+        url: "/#",
         items: [
             {
             id: 11,
             title: "Character Creator",
-            url: "/character-creator",
+            url: "#",
             isActive: false,
             },
             {
             id: 12,
             title: "Bio",
-            url: "/bio",
+            url: "#",
             isActive: false,
             },
         ],
@@ -35,30 +35,30 @@ const useSidebarStore = create<SidebarState>()((set) => ({
             {
             id: 21,
             title: "Property",
-            url: "/property",
+            url: "#",
             isAvtive: false,
             },
             {
             id: 22,
             title: "Forest",
-            url: "/forest",
+            url: "#",
             isActive: false,
             },
             {
             id: 23,
             title: "Magic Pool",
-            url: "/magic-pool",
+            url: "#",
             isActive: false,
             },
         ],
         }
     ],
     // update isActive state of navigation item
-    // this doesn't update. research needed
+    // store is not persistent on page refresh
     toggleActive: (id) => 
         set((state) => ({
             navMain: state.navMain.map((navGroup) => {
-                console.log(id);
+                console.log(id)
                 const updatedItems = navGroup.items.map((item) => {
                     return item.id === id ? { ...item, isActive: !item.isActive } : item;
                 });
@@ -66,7 +66,5 @@ const useSidebarStore = create<SidebarState>()((set) => ({
             }),
         })),
 }));
-
-
 
 export default useSidebarStore;
