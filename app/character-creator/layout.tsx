@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import Features from "../ui/features";
+import Features from "../ui/character-creator/features";
 
 export default function Layout({
     children,

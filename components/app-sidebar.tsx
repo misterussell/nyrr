@@ -16,48 +16,9 @@ import {
 import { useStore } from "zustand"
 import useSidebarStore from "@/stores/useSidebarStore";
 
-// const data = {
-//     navMain: [
-//         {
-//         id: 1,
-//         title: "Getting Started",
-//         url: "/getting-started",
-//         items: [
-//             {
-//             title: "Character Creator",
-//             url: "/character-creator",
-//             isActive: true,
-//             },
-//             {
-//             title: "Bio",
-//             url: "/bio",
-//             },
-//         ],
-//         },
-//         {
-//         id: 2,
-//         title: "World",
-//         url: "/world",
-//         items: [
-//             {
-//             title: "Property",
-//             url: "/property",
-//             },
-//             {
-//             title: "Forest",
-//             url: "/forest",
-//             },
-//             {
-//             title: "Magic Pool",
-//             url: "/magic-pool",
-//             },
-//         ],
-//         }
-//     ]
-// };
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const navMain = useSidebarStore((state) => state.navMain);
+    const activeLink = useSidebarStore((state) => state.activeLink);
     return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -70,8 +31,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarGroupContent>
               <SidebarMenu>
                 {item.items.map((item) => (
+                  // if the item's id matches the activeLink we set isActive to true
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={item.isActive} id={item.id}>
+                    <SidebarMenuButton asChild isActive={item.id === activeLink} id={item.id}>
                       <a href={item.url}>{item.title}</a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

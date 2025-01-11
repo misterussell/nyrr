@@ -1,4 +1,4 @@
-import RaceForm from "@/app/ui/raceForm";
+import RaceForm from "@/app/ui/character-creator/raceForm";
 
 export default async function Page() {
     return (

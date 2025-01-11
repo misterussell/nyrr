@@ -559,14 +559,14 @@ const SidebarMenuButton = React.forwardRef<
     
 
     // onClick function added here can trigger state updates
-    const toggleActive = useSidebarStore((state) => state.toggleActive); 
+    const setActiveLink = useSidebarStore((state) => state.setActiveLink); 
     const button = (
       <Comp
         ref={ref}
         data-sidebar="menu-button"
         data-size={size}
         data-active={isActive}
-        onClick={() => { toggleActive(props.id) }}
+        onClick={() => { setActiveLink(props.id) }}
         className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
         {...props}
       />

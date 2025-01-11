@@ -2,27 +2,30 @@ import { create } from "zustand";
 
 interface SidebarState {
     navMain: Array<object>
-    toggleActive: (id: number) => void
+    // toggleActive: (id: number) => void
+    setActiveLink: (id: number) => void
+    activeLink: number
 }
 
 const useSidebarStore = create<SidebarState>()((set) => ({
     // define navigation item
+    activeLink: 0,
     navMain: [
         {
         id: 1,
         title: "Getting Started",
-        url: "/#",
+        url: "/getting-started",
         items: [
             {
             id: 11,
             title: "Character Creator",
-            url: "#",
+            url: "/character-creator",
             isActive: false,
             },
             {
             id: 12,
             title: "Bio",
-            url: "#",
+            url: "/bio",
             isActive: false,
             },
         ],
@@ -30,41 +33,33 @@ const useSidebarStore = create<SidebarState>()((set) => ({
         {
         id: 2,
         title: "World",
-        url: "property",
+        url: "/world",
         items: [
             {
             id: 21,
             title: "Property",
-            url: "#",
-            isAvtive: false,
+            url: "/property",
+            isActive: false,
             },
             {
             id: 22,
             title: "Forest",
-            url: "#",
+            url: "/forest",
             isActive: false,
             },
             {
             id: 23,
             title: "Magic Pool",
-            url: "#",
+            url: "/magic-pool",
             isActive: false,
             },
         ],
         }
     ],
-    // update isActive state of navigation item
-    // store is not persistent on page refresh
-    toggleActive: (id) => 
+    setActiveLink: (id) => 
         set((state) => ({
-            navMain: state.navMain.map((navGroup) => {
-                console.log(id)
-                const updatedItems = navGroup.items.map((item) => {
-                    return item.id === id ? { ...item, isActive: !item.isActive } : item;
-                });
-            return { ...navGroup, items: updatedItems };    
-            }),
-        })),
+            activeLink: id
+        }))
 }));
 
 export default useSidebarStore;
