@@ -16,22 +16,22 @@ const ZodiacSelector = () => {
 
     const [zodiacSelection, setZodiacSelection] = useState<string>('');
     const zodiacDB = {
-        "scorpio": {
-            title: "Scorpio",
+        "queen": {
+            title: "The Queen",
             description: "Description here",
-            characteristics: "Characteristics here",
+            characteristics: [],
             content: "Content here",
             },
         "ignoble": {
-            title: "Ignoble",
+            title: "The Ignoble",
             description: "Description here",
-            characterists: "Characteristics here",
-            content: "Content here",
+            characterists: ["Gambler", "Courageous", "Forgetful"],
+            content: "Once cunning and ambitious, the Ignoble lost everything in a single night. Gambling in a small rat ridden hovel they lost their thumb on a game of cards. Then the gods took their gold and dignity. Now they spend eternity trying to regain their lost fortune.",
         },
         "hydra": {
-            title: "Hydra",
+            title: "The Hydra",
             description: "Description here",
-            characteristics: "Characteristics here",
+            characteristics: [],
             content: "Content here",
         }
     };
@@ -43,11 +43,12 @@ const ZodiacSelector = () => {
 
     return (
         <div>
-            <div>
+            <div className="flex flex-1 flex-col gap-2 p-4">
+                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                 {
                     Object.keys(zodiacDB).map((zodiac) => {
                         return (
-                            <Card className="w-[380px]"
+                            <Card className="aspect-video rounded-xl bg-muted/50"
                                 key={zodiac}
                                  onClick={() => {handleZodiacClick(zodiac)}}>
                                 <CardHeader>
@@ -66,7 +67,7 @@ const ZodiacSelector = () => {
                         );
                     })
                 }
-
+                </div>
             </div>
         </div>
     );
