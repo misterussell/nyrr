@@ -1,9 +1,10 @@
-import RaceForm from "@/app/ui/character-creator/raceForm";
+import RaceSelector from "@/app/ui/character-creator/raceSelector"
 
 export default async function Page() {
     return (
       <div>
-        <RaceForm />
+        <p>Select Race</p>
+        <RaceSelector />
       </div>
     )
   }

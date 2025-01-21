@@ -26,3 +26,8 @@ character = {
     },
 }
 ```
+
+## Merits
+
++ There will be a set of merits to level
++ They will have id's and a number
