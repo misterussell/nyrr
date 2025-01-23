@@ -20,7 +20,7 @@ export default function Features() {
                         key={link.name}
                         href={link.href}
                         replace
-                        className="rounded-xl bg-muted/50"
+                        className="rounded-xl bg-muted/50 p-4"
                         >
                         <p>{link.name}</p>
                     </Link>

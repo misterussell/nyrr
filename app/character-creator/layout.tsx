@@ -11,11 +11,9 @@ export default function Layout({
       <div>
         {/* Layout UI */}
           {/* Place children where you want to render a page or nested layout */}
-          <h1>Character Creator - New Character</h1>
-          <div className="grid auto-rows-min gap-2 md:grid-cols-3">
+          <div className="flex justify-center space-x-4 mt-4">
             <Features />
           </div>
-          <Link href="/character-creator">Back to character overview</Link>
           <main>{children}</main>
       </div>
     )

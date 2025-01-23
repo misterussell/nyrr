@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { title } from "process";
-import Image from "next/image";
+import useAppStore from "@/stores/useStore";
 
 const ZodiacSelector = () => {
 
-    const [zodiacSelection, setZodiacSelection] = useState<string>('');
+    const zodiacSelection = useAppStore((state) => state.zodiac);
+    const setZodiacSelection = useAppStore((state) => state.setZodiac);
     const zodiacDB = {
         "queen": {
             title: "The Queen",
@@ -35,29 +35,24 @@ const ZodiacSelector = () => {
         "hydra": {
             title: "The Hydra",
             description: "The Many-Headed",
-            characteristics: ["Beast", "Guardian", "Eternal"],
+            characteristics: ["Beast", "Guardian", "Wrathful"],
             content: "The Hydra is a creature of many heads, each with its own mind and will. It is said that the Hydra is the guardian of the underworld, and that it will devour any who dare to enter. It wears the armour of all that it has slain.",
             img: "/hydra.png",
         },
         "firesnake": {
             title: "The Firesnake",
             description: "Bringer of War",
-            characteristics: ["Creature", "Weapon", "Pest"],
+            characteristics: ["Beast", "Weapon", "Vengeful"],
             content: "Lost pet of the god of war, the Firesnake is a creature of chaos and destruction. It is said that the Firesnake will bring about the end of the world. It floats through the cosmos leaving destruction behind.",
             img: "/firesnake.jpg",
         },
         "mother_time": {
             title: "The Mother of Time",
             description: "Weaver of the Tapestry",
-            characteristics: [],
+            characteristics: ["Mother", "Psychic", "Peaceful"],
             content: "The Mother of Time weaves the tapestry of fate. She watches her clockwork children with a loving eye, guiding them through the trials of life. She is the keeper of the past, the present, and the future.",
             img: "/mother_time.jpeg",
         }
-    };
-
-    // handle zodiac div click
-    const handleZodiacClick = (selection: string) => {
-        setZodiacSelection(selection);
     };
 
     return (
@@ -69,7 +64,7 @@ const ZodiacSelector = () => {
                         return (
                             <Card className="aspect-video rounded-xl bg-muted/50"
                                 key={zodiac}
-                                 onClick={() => {handleZodiacClick(zodiac)}}>
+                                 onClick={() => {setZodiacSelection(zodiac)}}>
                                 <CardHeader>
                                     <CardTitle>{zodiacDB[zodiac as keyof typeof zodiacDB].title}</CardTitle>
                                     <CardDescription>{zodiacDB[zodiac as keyof typeof zodiacDB].description}</CardDescription>  
@@ -79,7 +74,8 @@ const ZodiacSelector = () => {
                                     {zodiacDB[zodiac as keyof typeof zodiacDB].content}
                                 </CardContent>
                                 <CardFooter>
-                                    <Button className={cn("btn w-full", zodiacSelection === zodiac ? "btn-primary" : "btn-secondary")}>
+                                    <Button className="w-full"
+                                        variant={zodiacSelection === zodiac ? 'outline' : 'default'}>
                                         {zodiacSelection === zodiac ? 'Selected' : 'Select'}
                                     </Button>
                                 </CardFooter>
