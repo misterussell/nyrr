@@ -18,6 +18,12 @@ const useSidebarStore = create<SidebarState>()((set) => ({
         items: [
             {
             id: 11,
+            title: "Home",
+            url: "/home",
+            isActive: false,
+            },
+            {
+            id: 11,
             title: "Character Creator",
             url: "/character-creator",
             isActive: false,

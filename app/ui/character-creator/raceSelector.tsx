@@ -10,7 +10,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import useAppStore from "@/stores/useStore";
+import useAppStore from "@/stores/appStore";
 
 const raceSelector = () => {
 

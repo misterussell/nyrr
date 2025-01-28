@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import useAppStore from "@/stores/useStore";
+import useAppStore from "@/stores/appStore";
 
 const ZodiacSelector = () => {
 

@@ -5,7 +5,7 @@
 
 ```json
 character = {
-    "id": 1,
+    "xid": 1,
     "username": "zoro",
     "zodiac": "zodiac",
     "gender": "male",
@@ -13,7 +13,7 @@ character = {
     "race": "elf",
     "merits": [1, 2],
     "items": [1, 2],
-    "created_at": "YYYY-MM-DD",
+    "createdAt": "YYYY-MM-DD",
     "status": "civilian",
     "currentArea": 1,
     "rank": 2,
