@@ -11,11 +11,15 @@ export const getCharacter = async () => {
             magic: 10
         },
         gender: "male",
+        job: "The Boss of Everything",
+        lastAction: "now",
         level: 1,
+        life: [500,500],
         netWorth: 100,
         race: "elf",
-        status: "civilian",
-        username: "rock",
+        role: "admin",
+        status: "building",
+        username: "rok",
         zodiac: "queen",
         profilePic: "/spaceelf.png"
     };
