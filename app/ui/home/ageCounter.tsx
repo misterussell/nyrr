@@ -9,7 +9,7 @@ const AgeCounter: React.FC<AgeCounterProps> = ({ age }) => {
     
     return (
         <>
-            <ul className="flex text-6xl">
+            <ul className="flex text-4xl">
                 <li className="p-2 border-l-2 border-t-2 border-b-2 border-zinc-400 rounded-l-md">{ageString[0]}</li>
                 <li className="p-2 border-t-2 border-b-2 border-zinc-400">{ageString[1]}</li>
                 <li className="p-2 border-r-2 border-t-2 border-b-2 border-zinc-400 rounded-r-md">{ageString[2]}</li>
